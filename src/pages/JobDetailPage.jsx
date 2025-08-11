@@ -6,6 +6,7 @@ import Hero from "../components/HeroJob";
 import ApplyModal from "../components/apply";
 import { MapPin, Mail, Clock, Briefcase, Calendar } from "lucide-react";
 import Footer from "../components/footer";
+import { fetchJobs } from "../redux/slices/jobSlice";
 
 const JobDetailPage = () => {
   const { id } = useParams();
@@ -17,10 +18,10 @@ const JobDetailPage = () => {
   const { list, loading, error } = useSelector((state) => state.jobs);
 
   useEffect(() => {
-    if (list.length === 0) {
-      dispatch(fetchJobs());
-    }
-  }, [list.length, dispatch]);
+  if (list.length === 0 || !job) {
+    dispatch(fetchJobs());
+  }
+}, [list.length, job, dispatch]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;

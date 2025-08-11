@@ -6,8 +6,7 @@ import authReducer from "../redux/slices/authSlice";
 const store = configureStore({
   reducer: {
     jobs: jobsReducer,
-    auth: authReducer,
-    
+    auth: authReducer,    
   },
 });
 

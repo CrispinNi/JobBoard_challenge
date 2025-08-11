@@ -13,11 +13,19 @@ import RegisterPage from "./pages/RegisterPage";
 import JobDetailPage from "./pages/JobDetailPage";
 import AdminDashboard from "./pages/AdminDashboard";
 import Test from "./pages/Test";
+import { restoreAuth } from "./redux/slices/authSlice.js"
+
+const savedAuth = localStorage.getItem("auth");
+if (savedAuth) {
+  store.dispatch(restoreAuth(JSON.parse(savedAuth)));
+}
+
 
 const PrivateRoute = ({ children }) => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   return isAuthenticated ? children : <Navigate to="/login" />;
 };
+
 
 const AppRoutes = () => (
   <Routes>
