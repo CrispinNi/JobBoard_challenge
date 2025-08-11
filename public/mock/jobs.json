@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Product Manager",
+    "location": "New York, NY",
+    "remote": true,
+    "salary": "$165,600",
+    "tags": ["Digital", "Product", "Management"],
+    "date": "Aug 17, 2023"
+  },
+  {
+    "title": "Marketing Project Manager",
+    "location": "Stamford, CT",
+    "remote": true,
+    "salary": "$198,000",
+    "tags": ["Marketing", "Project", "Remote"],
+    "date": "Aug 17, 2023"
+  },
+  {
+    "title": "Software engineer",
+    "location": "Stamford, CT",
+    "fulltime": true,
+    "salary": "$234,000",
+    "tags": ["Engineering", "Project", "Remote"],
+    "date": "Aug 17, 2023"
+  }
+]
