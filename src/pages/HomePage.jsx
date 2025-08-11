@@ -26,16 +26,16 @@ export default function HomePage() {
   });
 
   return (
-    <div className="min-h-screen font-sans bg-white">
+    <div className="min-h-screen font-interTight bg-white">
       <Navbar />
       <Hero />
       <FilterTabs />
 
       <div className=" mx-12 mt-8 space-y-6 px-4">
         {loading && (
-          <p className="text-center text-gray-500">Loading jobs...</p>
+          <p className="text-center text-gray-500 font-interTight">Loading jobs...</p>
         )}
-        {error && <p className="text-center text-red-500">{error}</p>}
+        {error && <p className="text-center text-red-500 font-interTight">{error}</p>}
         {!loading &&
           !error &&
           filteredJobs.map((job, index) => (

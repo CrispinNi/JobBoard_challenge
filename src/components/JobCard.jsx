@@ -1,13 +1,14 @@
 import React from "react";
 import { Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
+import '@fontsource/inter-tight'; 
 
 const JobCard = ({ job, index }) => (
   <Link
     to={`/jobs/${index}`}
     className="block border rounded-2xl p-6 shadow-sm hover:bg-gray-50 transition"
   >
-    <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
+    <div className="flex flex-col md:flex-row justify-between items-start md:items-center font-interTight">
       <div>
         <h2 className="text-xl font-bold font-serif">{job.title}</h2>
         <p className="text-sm text-black-200 pt-1 font-normal font-serif">

@@ -7,6 +7,7 @@ import ApplyModal from "../components/apply";
 import { MapPin, Mail, Clock, Briefcase, Calendar } from "lucide-react";
 import Footer from "../components/footer";
 import { fetchJobs } from "../redux/slices/jobSlice";
+import '@fontsource/inter-tight'; 
 
 const JobDetailPage = () => {
   const { id } = useParams();
@@ -36,29 +37,29 @@ const JobDetailPage = () => {
   };
 
   return (
-    <div className="min-h-screen font-sans bg-white">
+    <div className="min-h-screen font-interTight bg-white">
       <Navbar />
       <Hero />
       <div className="max-w-6xl mx-auto p-6 flex flex-col md:flex-row gap-8">
         {/* Left Section */}
         <div className="flex-1">
           {/* Job Title & Company */}
-          <h1 className="text-3xl font-bold font-serif">{job.title}</h1>
-          <p className="text-lg text-gray-600 font-serif">{job.company}</p>
-          <p className="text-blue-500 font-serif">
+          <h1 className="text-3xl font-bold ">{job.title}</h1>
+          <p className="text-lg text-gray-600 ">{job.company}</p>
+          <p className="text-blue-500 ">
             {job.location} / {job.country} / {job.remote ? "Remote" : "On-site"}
           </p>
 
           {/* Overview */}
           <section className="mt-8">
-            <h2 className="text-xl font-bold mb-2 font-serif">Overview</h2>
+            <h2 className="text-xl font-bold mb-2 ">Overview</h2>
             <p>{job.overview || "No overview available."}</p>
           </section>
 
           {/* Responsibilities */}
           <section className="mt-8">
-            <h2 className="text-xl font-bold mb-2 font-serif">Responsibilities</h2>
-            <div className="space-y-2 font-serif">
+            <h2 className="text-xl font-bold mb-2 ">Responsibilities</h2>
+            <div className="space-y-2 ">
               {job.responsibilities?.map((item, idx) => (
                 <p key={idx}>- {item}</p>
               )) || "None listed."}
@@ -67,8 +68,8 @@ const JobDetailPage = () => {
 
           {/* Qualifications */}
           <section className="mt-8">
-            <h2 className="text-xl font-bold mb-2 font-serif">Qualifications</h2>
-            <ul className="list-disc list-inside space-y-1 font-serif">
+            <h2 className="text-xl font-bold mb-2 ">Qualifications</h2>
+            <ul className="list-disc list-inside space-y-1 ">
               {job.qualifications?.map((item, idx) => (
                 <li key={idx}>{item}</li>
               )) || "None listed."}

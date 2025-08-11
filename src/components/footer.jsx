@@ -1,63 +1,66 @@
-import { FaFacebookF, FaInstagram, FaLinkedinIn, FaPinterestP } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6"; // X (Twitter) icon
-import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import React from "react";
+import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaFacebookF, FaInstagram } from "react-icons/fa";
+import { FaSquareXTwitter } from "react-icons/fa6"; // Optional for X/Twitter
+import '@fontsource/inter-tight'; 
 
 export default function Footer() {
   return (
-    <footer className="mt-16 bg-white mx-12 flex-auto">
-      {/* Top Section: About Us + Contact */}
-      <div className="px-6 py-6 grid grid-cols-1 md:grid-cols-2 gap-6 border-b border-gray-200/20 ">
-        {/* About Us Section */}
-        <div>
-          <h2 className="text-lg text-[#21295c] font-bold mb-2 font-serif">About Us</h2>
-          <p className="text-black-600 text-base leading-relaxed mb-3 font-serif">
-            We are a modern Job Board platform designed to connect job seekers with the right opportunities.  
-            From startups to global companies, our platform helps organizations find the talent they need while  
-            giving professionals access to a wide range of job listings in various industries.
-          </p>
+    <footer className="bg-[#e6f0fa] mt-18 font-interTight">
+    
+      {/* Footer Content */}
+      <div className="bg-white text-[#21295c] px-6 py-8 flex flex-col items-center md:items-start border-t border-[#21295c]/60">
+        <div className="flex flex-col md:flex-row md:justify-around w-full gap-6 mb-4">
+          {/* Address */}
+          <div className="flex items-center gap-3">
+            <FaMapMarkerAlt className="text-xl" />
+            <p className="text-sm">
+              <strong>Our Address:</strong>
+              <br />
+              3 Amiad Street, Tel Aviv<br />
+              Yafa, 6108401 Israel
+            </p>
+          </div>
 
-          <h3 className="text-md text-[#21295c] font-bold mt-4 mb-1 font-serif">Our Mission</h3>
-          <p className="text-black-600 text-base leading-relaxed mb-3 font-serif">
-            To simplify the job search process by providing a user-friendly platform  
-            where candidates can easily discover, apply, and track opportunities that match  
-            their skills and career goals.
-          </p>
+          {/* Phone */}
+          <div className="flex items-center gap-3">
+            <FaPhoneAlt className="text-xl" />
+            <p className="text-sm">
+              <strong>Call Us:</strong> 054-624-1163
+              <br />
+              <strong>Fax/Call:</strong> 03-6814052
+            </p>
+          </div>
+
+          {/* Email */}
+          <div className="flex items-center gap-3">
+            <FaEnvelope className="text-xl" />
+            <p className="text-sm">
+              <strong>Email Us at:</strong>
+              <br />
+              <a href="mailto:layla@housethree.co.il" className="underline">
+                layla@housethree.co.il
+              </a>
+            </p>
+          </div>
+
+          {/* Social Icons */}
+          <div className="flex items-center gap-4">
+            <a href="#" className="bg-blue-600 p-2 rounded-full hover:bg-blue-700">
+              <FaFacebookF />
+            </a>
+            <a href="#" className="bg-green-600 p-2 rounded-full hover:bg-green-700">
+              <FaInstagram />
+            </a>
+            <a href="#" className="bg-black p-2 rounded-full hover:bg-gray-800">
+              <FaSquareXTwitter />
+            </a>
+          </div>
         </div>
 
-        {/* Contact Section */}
-        <div className="">
-          <h2 className="text-lg text-[#21295c] font-bold mb-2 font-serif">Contact</h2>
-          <ul className="text-gray-600 text-sm space-y-3">
-            <li className="flex items-center gap-2">
-              <FaPhoneAlt className="text-blue-500" />
-              <span>+1 (555) 123-4567</span>
-            </li>
-            <li className="flex items-center gap-2">
-              <FaEnvelope className="text-green-500" />
-              <span>support@jobboard.com</span>
-            </li>
-            <li className="flex items-center gap-2">
-              <FaMapMarkerAlt className="text-red-500" />
-              <span>123 Main Street, New York, NY</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      {/* Bottom Section: Social Icons + Copyright */}
-      <div className="flex flex-col md:flex-row justify-between items-center px-6 py-4 text-gray-700 border-t border-gray-500/20">
-        {/* Social Icons */}
-        <div className="flex items-center gap-5">
-          <a href="#" className="hover:text-blue-600"><FaFacebookF size={18} /></a>
-          <a href="#" className="hover:text-black"><FaXTwitter size={18} /></a>
-          <a href="#" className="hover:text-pink-500"><FaInstagram size={18} /></a>
-          <a href="#" className="hover:text-blue-700"><FaLinkedinIn size={18} /></a>
-          <a href="#" className="hover:text-red-500"><FaPinterestP size={18} /></a>
-        </div>
-
-        {/* Copyright & Badge */}
-        <div className="flex items-center gap-2 mt-3 md:mt-0 text-sm">
-          <span>© 2025</span>
+        {/* Bottom Row */}
+        <div className="w-full/1:2 mx-12 flex justify-center border-t border-[#21295c]/20 pt-4 text-sm">
+          <p>© 2020 All Copyrights Reserved To House Number 3</p>
+          
         </div>
       </div>
     </footer>

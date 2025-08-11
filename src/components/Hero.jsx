@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { setSearchTerm } from "../redux/slices/jobSlice";
 import { Search } from "lucide-react";
+import '@fontsource/inter-tight'; 
 
 const Hero = () => {
   const dispatch = useDispatch();
@@ -11,7 +12,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="flex justify-center items-center p-6 mx-10">
+    <section className="flex justify-center items-center p-6 mx-10 font-interTight">
       <div className="w-full rounded-3xl bg-gradient-to-r from-blue-600 to-blue-800 p-12 text-center text-white relative">
         {/* Title */}
         <h1 className="text-6xl font-bold mb-4">Finding a job</h1>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import '@fontsource/inter-tight'; 
 
 const ApplyModal = ({ isOpen, onClose, jobId }) => {
   const [formData, setFormData] = useState({

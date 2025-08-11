@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Search } from "lucide-react";
 import { logout } from "../redux/slices/authSlice";
 import { Link } from "react-router-dom";
+import '@fontsource/inter-tight'; 
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -11,11 +12,11 @@ const Navbar = () => {
   return (
     <nav className="flex justify-between items-center px-6 py-6 mx-10">
       <div className="flex items-center gap-2">
-        <Link to="/" className="text-2xl font-bold text-blue-900">
+        <Link to="/" className="text-2xl font-bold text-blue-900 font-interTight ">
           ISCO Technologies
         </Link>
       </div>
-      <ul className="flex items-center gap-6 text-sm font-medium text-[#21295c]">
+      <ul className="flex items-center gap-6 text-sm font-medium text-[#21295c] font-interTight">
         <li className="hover:text-[#06aeef]"> 
           <Link to="/">Find Jobs</Link>
         </li>

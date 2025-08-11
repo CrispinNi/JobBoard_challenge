@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { setFilterTag } from "../redux/slices/jobSlice";
+import '@fontsource/inter-tight'; 
 
 const tags = [
   { label: "All Jobs", value: "" },
@@ -18,7 +19,7 @@ const FilterTabs = () => {
   };
 
   return (
-    <div className="flex flex-wrap gap-3 mx-12 mt-16">
+    <div className="flex flex-wrap gap-3 mx-12 mt-16 font-interTight">
       {tags.map((tag, idx) => (
         <button
           key={idx}

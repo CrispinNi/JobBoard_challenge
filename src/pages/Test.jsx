@@ -1,121 +1,65 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import Navbar from "../components/Navbar";
-import Hero from "../components/HeroJob";
-import ApplyModal from "../components/apply";
-import { MapPin, Mail, Clock, Briefcase, Calendar } from "lucide-react";
-import Footer from "../components/footer";
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaPinterestP } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6"; // X (Twitter) icon
+import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 
-const JobDetailPage = () => {
-  const { id } = useParams();
-  const job = useSelector((state) => state.jobs.list[parseInt(id)]);
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const [showModal, setShowModal] = useState(false);
-
-  if (!job) {
-    return <div className="text-center p-10 text-gray-500">Job not found</div>;
-  }
-
-  const handleApplyClick = () => {
-    if (!isAuthenticated) {
-      alert("Please log in to apply for this job.");
-      return;
-    }
-    setShowModal(true);
-  };
-
+export default function Footer() {
   return (
-    <div className="min-h-screen font-sans bg-white">
-      <Navbar />
-      <Hero />
-      <div className="max-w-6xl mx-auto p-6 flex flex-col md:flex-row gap-8">
-        {/* Left Section */}
-        <div className="flex-1">
-          {/* Job Title & Company */}
-          <h1 className="text-3xl font-bold font-serif">{job.title}</h1>
-          <p className="text-lg text-gray-600 font-serif">{job.company}</p>
-          <p className="text-blue-500 font-serif">
-            {job.location} / {job.country} / {job.remote ? "Remote" : "On-site"}
+    <footer className="mt-16 bg-white mx-12 flex-auto">
+      {/* Top Section: About Us + Contact */}
+      <div className="px-6 py-6 grid grid-cols-1 md:grid-cols-2 gap-6 border-b border-gray-200/20 ">
+        {/* About Us Section */}
+        <div>
+          <h2 className="text-lg text-[#21295c] font-bold mb-2 font-serif">About Us</h2>
+          <p className="text-black-600 text-base leading-relaxed mb-3 font-serif">
+            We are a modern Job Board platform designed to connect job seekers with the right opportunities.  
+            From startups to global companies, our platform helps organizations find the talent they need while  
+            giving professionals access to a wide range of job listings in various industries.
           </p>
 
-          {/* Overview */}
-          <section className="mt-8">
-            <h2 className="text-xl font-bold mb-2 font-serif">Overview</h2>
-            <p>{job.overview || "No overview available."}</p>
-          </section>
-
-          {/* Responsibilities */}
-          <section className="mt-8">
-            <h2 className="text-xl font-bold mb-2 font-serif">Responsibilities</h2>
-            <div className="space-y-2 font-serif">
-              {job.responsibilities?.map((item, idx) => (
-                <p key={idx}>- {item}</p>
-              )) || "None listed."}
-            </div>
-          </section>
-
-          {/* Qualifications */}
-          <section className="mt-8">
-            <h2 className="text-xl font-bold mb-2 font-serif">Qualifications</h2>
-            <ul className="list-disc list-inside space-y-1 font-serif">
-              {job.qualifications?.map((item, idx) => (
-                <li key={idx}>{item}</li>
-              )) || "None listed."}
-            </ul>
-          </section>
+          <h3 className="text-md text-[#21295c] font-bold mt-4 mb-1 font-serif">Our Mission</h3>
+          <p className="text-black-600 text-base leading-relaxed mb-3 font-serif">
+            To simplify the job search process by providing a user-friendly platform  
+            where candidates can easily discover, apply, and track opportunities that match  
+            their skills and career goals.
+          </p>
         </div>
 
-        {/* Right Section */}
-        <div className="w-full md:w-80">
-          <div className="border rounded-xl p-6 shadow-sm space-y-4">
-            <div className="flex items-center gap-2 text-gray-600">
-              <MapPin className="w-5 h-5" />
-              <span>{job.location}</span>
-            </div>
-            <p className="text-gray-500">
-              Please send us your detailed CV to apply for this job post
-            </p>
-            <p className="text-2xl font-bold">
-              {job.salary ? `$${job.salary}` : "Not specified"}
-            </p>
-            <span className="text-gray-500 text-sm">Avg. salary</span>
-
-            <div className="flex items-center gap-2 text-gray-600">
-              <Mail className="w-5 h-5" />
-              <span>{job.email || "hr@example.com"}</span>
-            </div>
-            <div className="flex items-center gap-2 text-gray-600">
-              <Clock className="w-5 h-5" />
-              <span>{job.remote ? "Remote" : "On-site"}</span>
-            </div>
-            <div className="flex items-center gap-2 text-gray-600">
-              <Briefcase className="w-5 h-5" />
-              <span>{job.jobCategory || "General"}</span>
-            </div>
-            <div className="flex items-center gap-2 text-gray-600">
-              <Calendar className="w-5 h-5" />
-              <span>{job.date}</span>
-            </div>
-
-            <button
-              onClick={handleApplyClick}
-              className="w-full mt-4 bg-[#06aeef] text-white py-2 rounded-full font-medium"
-            >
-              Apply for this job
-            </button>
-          </div>
+        {/* Contact Section */}
+        <div className="">
+          <h2 className="text-lg text-[#21295c] font-bold mb-2 font-serif">Contact</h2>
+          <ul className="text-gray-600 text-sm space-y-3">
+            <li className="flex items-center gap-2">
+              <FaPhoneAlt className="text-blue-500" />
+              <span>+1 (555) 123-4567</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <FaEnvelope className="text-green-500" />
+              <span>support@jobboard.com</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <FaMapMarkerAlt className="text-red-500" />
+              <span>123 Main Street, New York, NY</span>
+            </li>
+          </ul>
         </div>
       </div>
 
-      <ApplyModal
-        isOpen={showModal}
-        onClose={() => setShowModal(false)}
-        jobId={id}
-      />
-      <Footer/>
-    </div>
-  );
-};
+      {/* Bottom Section: Social Icons + Copyright */}
+      <div className="flex flex-col md:flex-row justify-between items-center px-6 py-4 text-gray-700 border-t border-gray-500/20">
+        {/* Social Icons */}
+        <div className="flex items-center gap-5">
+          <a href="#" className="hover:text-blue-600"><FaFacebookF size={18} /></a>
+          <a href="#" className="hover:text-black"><FaXTwitter size={18} /></a>
+          <a href="#" className="hover:text-pink-500"><FaInstagram size={18} /></a>
+          <a href="#" className="hover:text-blue-700"><FaLinkedinIn size={18} /></a>
+          <a href="#" className="hover:text-red-500"><FaPinterestP size={18} /></a>
+        </div>
 
-export default JobDetailPage;
+        {/* Copyright & Badge */}
+        <div className="flex items-center gap-2 mt-3 md:mt-0 text-sm">
+          <span>© 2025</span>
+        </div>
+      </div>
+    </footer>
+  );
+}

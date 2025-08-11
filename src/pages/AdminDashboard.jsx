@@ -63,7 +63,7 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-6">
+    <div className="min-h-screen bg-gray-900 text-white p-6 font-interTight">
       <h1 className="text-3xl font-bold mb-6 text-center text-indigo-400">
         Admin Dashboard
       </h1>
