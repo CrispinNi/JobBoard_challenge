@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { login } from "../redux/slices/authSlice";
 import { mockLogin } from "../mock/api";
 
@@ -8,26 +10,26 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError(null);
+
     try {
       const user = await mockLogin(email, password);
 
-      if (user.email === "user@gmail.com") {
-        dispatch(login(user));
-        navigate("/");
-      } else if (user) {
-        dispatch(login(user));
+      dispatch(login(user)); // save { email, role }
+      toast.success("Login successful!", { position: "top-right" });
+
+      if (user.role === "admin") {
         navigate("/admin");
+      } else {
+        navigate("/");
       }
     } catch (err) {
-      setError(err.message);
+      toast.error(err.message || "Login failed!", { position: "top-right" });
     } finally {
       setLoading(false);
     }
@@ -40,7 +42,7 @@ const LoginPage = () => {
         className="bg-white p-8 rounded shadow-md w-full max-w-md"
       >
         <h2 className="text-2xl font-bold mb-6">Login</h2>
-        {error && <p className="text-red-500 mb-4">{error}</p>}
+
         <input
           type="email"
           placeholder="Email"

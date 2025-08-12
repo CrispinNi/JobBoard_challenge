@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import '@fontsource/inter-tight'; 
+import "@fontsource/inter-tight";
+
 
 const ApplyModal = ({ isOpen, onClose, jobId }) => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,18 @@ const ApplyModal = ({ isOpen, onClose, jobId }) => {
     cv: null,
     coverLetter: null,
   });
+
+  const [show, setShow] = useState(false);
+  const modalRef = useRef(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      setShow(true); // start animation in
+    } else {
+      const timeout = setTimeout(() => setShow(false), 300); // wait for animation out
+      return () => clearTimeout(timeout);
+    }
+  }, [isOpen]);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -40,19 +53,40 @@ const ApplyModal = ({ isOpen, onClose, jobId }) => {
     }
   };
 
-  if (!isOpen) return null;
+  const handleOverlayClick = (e) => {
+    if (modalRef.current && !modalRef.current.contains(e.target)) {
+      onClose();
+    }
+  };
+
+  if (!isOpen && !show) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-black bg-opacity-40 flex items-center justify-center">
-      <div className="bg-white p-6 rounded-lg w-full max-w-lg relative">
+    <div
+      className={`fixed inset-0 z-50 flex items-end md:items-center justify-center transition-colors duration-300 ${
+        isOpen ? "bg-white bg-opacity-40" : "bg-white bg-opacity-0"
+      }`}
+      onClick={handleOverlayClick}
+    >
+      <div
+        ref={modalRef}
+        className={`bg-white p-6 rounded-t-2xl md:rounded-lg w-full max-w-lg relative transform transition-transform duration-300 ease-out ${
+          isOpen ? "translate-y-0" : "translate-y-full md:translate-y-8 opacity-0"
+        }`}
+        onClick={(e) => e.stopPropagation()} // prevent clicks inside modal from closing it
+      >
+      <div className="bg-gray-200 rounded-lg">
+        {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-2 right-2 text-gray-500 hover:text-black"
+          className="absolute top-2 right-2 text-gray-500 hover:text-black p-8"
         >
           ✕
         </button>
-        <h2 className="text-xl font-bold mb-4">Apply for Job</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
+
+        <h2 className="text-xl font-bold mb-4 p-8">Apply for Job</h2>
+
+        <form onSubmit={handleSubmit} className="space-y-4 p-8">
           <input
             name="firstName"
             type="text"
@@ -109,6 +143,8 @@ const ApplyModal = ({ isOpen, onClose, jobId }) => {
             Submit Application
           </button>
         </form>
+      </div>
+        
       </div>
     </div>
   );

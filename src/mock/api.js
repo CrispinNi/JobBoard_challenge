@@ -18,12 +18,17 @@ export const mockLogin = async (email, password) => {
     (user) => user.email === email && user.password === password
   );
 
-  // console.log("Match", match);
-
   const adminMatch = adminData.admins.find(
     (admin) => admin.email === email && admin.password === password
   );
 
-  if (!match && !adminMatch) throw new Error("Invalid credentials");
-  return { email };
+  if (adminMatch) {
+    return { email, role: "admin" };
+  }
+
+  if (match) {
+    return { email, role: "user" };
+  }
+
+  throw new Error("Invalid credentials");
 };

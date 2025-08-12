@@ -12,16 +12,6 @@ const AdminDashboard = () => {
   if (!isAuthenticated) {
     navigate("/login");
   }
-
-  // // Authentication protection
-  // useEffect(() => {
-  //   const token = localStorage.getItem("adminToken");
-  //   if (!token) {
-  //     navigate("/login"); // redirect if not authenticated
-  //   }
-  // }, [navigate]);
-
-  // Fetch applications
   useEffect(() => {
     const fetchApplications = async () => {
       try {

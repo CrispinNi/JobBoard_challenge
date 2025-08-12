@@ -1,12 +1,47 @@
-# React + Vite
+# Job Board
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive front-end job board application that allows users to **search** for available jobs and **apply** directly online.  
+This project was built as part of the **Front-End Developer Assessment** for ISCO Technologies, focusing on clean UI/UX, state management, and integration with mocked APIs.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Technologies Used
 
-## Expanding the ESLint configuration
+- **React** – Component-based UI framework
+- **Redux Toolkit** – State management (with slices for auth, jobs, and applications)
+- **React Toastify** – Toast notifications
+- **Tailwind CSS** – Utility-first styling
+- **Axios** – API requests
+- **Lucide React** & **React Icons** – Icons
+- **React Router DOM** – Client-side routing
+- **JSON Server** – Mock API backend
+- **Vite** – Fast development build tool
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## ⚙️ Setup Instructions
+
+Follow these steps to set up the project locally:
+Install dependencies
+### 1. Clone the repository
+```bash
+git clone https://github.com/your-username/job-board.git
+cd job-board
+
+### 2.Install dependencies
+
+npm install
+
+### 3.Start JSON Server (mock API)
+
+npx json-server --watch db.json --port 5000
+
+N.B:(Make sure db.json is in the root directory with job and user data)
+
+### 4.Run the development server
+
+npm run dev
+
+### 5.Build for production
+
+npm run build

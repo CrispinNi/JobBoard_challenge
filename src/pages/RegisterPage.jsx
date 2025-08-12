@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { register } from "../redux/slices/authSlice";
 import { mockRegister } from "../mock/api";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const RegisterPage = () => {
   const [email, setEmail] = useState("");
@@ -20,6 +22,7 @@ const RegisterPage = () => {
       const user = await mockRegister(email, password);
       dispatch(register(user));
       navigate("/");
+      toast.success("Register successful!", { position: "top-right" })
     } catch (err) {
       setError(err.message);
     } finally {

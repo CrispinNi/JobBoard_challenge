@@ -7,22 +7,25 @@ import ApplyModal from "../components/apply";
 import { MapPin, Mail, Clock, Briefcase, Calendar } from "lucide-react";
 import Footer from "../components/footer";
 import { fetchJobs } from "../redux/slices/jobSlice";
-import '@fontsource/inter-tight'; 
+import "@fontsource/inter-tight";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const JobDetailPage = () => {
   const { id } = useParams();
-  const job = useSelector((state) => state.jobs.list[parseInt(id)]);
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
 
   const { list, loading, error } = useSelector((state) => state.jobs);
+  const job = list[parseInt(id)];
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   useEffect(() => {
-  if (list.length === 0 || !job) {
-    dispatch(fetchJobs());
-  }
-}, [list.length, job, dispatch]);
+    if (list.length === 0 || !job) {
+      dispatch(fetchJobs());
+    }
+  }, [list.length, job, dispatch]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -30,7 +33,7 @@ const JobDetailPage = () => {
 
   const handleApplyClick = () => {
     if (!isAuthenticated) {
-      alert("Please log in to apply for this job.");
+      toast.error("Please log in to apply for this job.");
       return;
     }
     setShowModal(true);
@@ -43,23 +46,22 @@ const JobDetailPage = () => {
       <div className="max-w-6xl mx-auto p-6 flex flex-col md:flex-row gap-8">
         {/* Left Section */}
         <div className="flex-1">
-          {/* Job Title & Company */}
-          <h1 className="text-3xl font-bold ">{job.title}</h1>
-          <p className="text-lg text-gray-600 ">{job.company}</p>
-          <p className="text-blue-500 ">
+          <h1 className="text-3xl font-bold">{job.title}</h1>
+          <p className="text-lg text-gray-600">{job.company}</p>
+          <p className="text-blue-500">
             {job.location} / {job.country} / {job.remote ? "Remote" : "On-site"}
           </p>
 
           {/* Overview */}
           <section className="mt-8">
-            <h2 className="text-xl font-bold mb-2 ">Overview</h2>
+            <h2 className="text-xl font-bold mb-2">Overview</h2>
             <p>{job.overview || "No overview available."}</p>
           </section>
 
           {/* Responsibilities */}
           <section className="mt-8">
-            <h2 className="text-xl font-bold mb-2 ">Responsibilities</h2>
-            <div className="space-y-2 ">
+            <h2 className="text-xl font-bold mb-2">Responsibilities</h2>
+            <div className="space-y-2">
               {job.responsibilities?.map((item, idx) => (
                 <p key={idx}>- {item}</p>
               )) || "None listed."}
@@ -68,8 +70,8 @@ const JobDetailPage = () => {
 
           {/* Qualifications */}
           <section className="mt-8">
-            <h2 className="text-xl font-bold mb-2 ">Qualifications</h2>
-            <ul className="list-disc list-inside space-y-1 ">
+            <h2 className="text-xl font-bold mb-2">Qualifications</h2>
+            <ul className="list-disc list-inside space-y-1">
               {job.qualifications?.map((item, idx) => (
                 <li key={idx}>{item}</li>
               )) || "None listed."}
@@ -119,12 +121,14 @@ const JobDetailPage = () => {
         </div>
       </div>
 
+      {/* Apply Modal */}
       <ApplyModal
         isOpen={showModal}
         onClose={() => setShowModal(false)}
         jobId={id}
       />
-      <Footer/>
+
+      <Footer />
     </div>
   );
 };
