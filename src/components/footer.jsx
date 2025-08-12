@@ -16,8 +16,8 @@ export default function Footer() {
             <p className="text-sm">
               <strong>Our Address:</strong>
               <br />
-              3 Amiad Street, Tel Aviv<br />
-              Yafa, 6108401 Israel
+              KG 207 St, Kigali<br />
+              Remera, KIGALI
             </p>
           </div>
 
@@ -25,7 +25,7 @@ export default function Footer() {
           <div className="flex items-center gap-3">
             <FaPhoneAlt className="text-xl" />
             <p className="text-sm">
-              <strong>Call Us:</strong> 054-624-1163
+              <strong>Call Us:</strong> +250784620000
               <br />
               <strong>Fax/Call:</strong> 03-6814052
             </p>
@@ -37,8 +37,8 @@ export default function Footer() {
             <p className="text-sm">
               <strong>Email Us at:</strong>
               <br />
-              <a href="mailto:layla@housethree.co.il" className="underline">
-                layla@housethree.co.il
+              <a href="" className="underline">
+                cricipin02@gmail.com
               </a>
             </p>
           </div>
