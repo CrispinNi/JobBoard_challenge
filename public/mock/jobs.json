@@ -1,26 +1,81 @@
 [
   {
-    "title": "Product Manager",
-    "location": "New York, NY",
-    "remote": true,
-    "salary": "$165,600",
-    "tags": ["Digital", "Product", "Management"],
-    "date": "Aug 17, 2023"
-  },
-  {
     "title": "Marketing Project Manager",
     "location": "Stamford, CT",
     "remote": true,
     "salary": "$198,000",
     "tags": ["Marketing", "Project", "Remote"],
-    "date": "Aug 17, 2023"
+    "date": "Aug 17, 2023",
+    "overview":"The Marketing Project Manager plays a critical role in planning, executing, and delivering marketing campaigns and initiatives that align with business objectives. This role bridges the gap between creative, digital, and strategic teams—ensuring projects are delivered on time, within scope, and on budget. The ideal candidate will be a detail-oriented communicator with a strong understanding of marketing strategies, project management best practices, and cross-functional collaboration.",
+    "responsibilities": " Plan, organize, and manage marketing projects from initiation to completion",
+    "qualifications": "Bachelor’s degree in Marketing, Communications, Business Administration, or related field."
+  },
+  
+  {
+    "title": "Software Engineer",
+    "location": "Austin, TX",
+    "remote": false,
+    "salary": "$125,000",
+    "tags": ["Engineering", "Software Development", "Full-time"],
+    "date": "Sep 5, 2023",
+    "overview": "The Software Engineer will design, develop, and maintain high-quality software applications that solve real-world problems. This role requires strong coding skills, an analytical mindset, and the ability to work collaboratively in an agile environment.",
+    "responsibilities": "Write clean, scalable code and collaborate with cross-functional teams to define software requirements.",
+    "qualifications": "Bachelor’s degree in Computer Science or related field, with 2+ years of programming experience."
   },
   {
-    "title": "Software engineer",
-    "location": "Stamford, CT",
-    "fulltime": true,
-    "salary": "$234,000",
-    "tags": ["Engineering", "Project", "Remote"],
-    "date": "Aug 17, 2023"
+    "title": "Data Analyst",
+    "location": "Seattle, WA",
+    "remote": true,
+    "salary": "$92,000",
+    "tags": ["Data", "Analytics", "Remote"],
+    "date": "Oct 12, 2023",
+    "overview": "The Data Analyst will collect, process, and analyze data to help guide strategic business decisions. This position requires strong analytical skills, attention to detail, and experience with data visualization tools.",
+    "responsibilities": "Analyze large datasets to identify trends, patterns, and insights that support business objectives.",
+    "qualifications": "Bachelor’s degree in Data Science, Statistics, or related field, and proficiency in SQL and Excel."
+  },
+  {
+    "title": "UX/UI Designer",
+    "location": "New York, NY",
+    "remote": false,
+    "salary": "$110,000",
+    "tags": ["Design", "UX", "UI"],
+    "date": "Jul 29, 2023",
+    "overview": "The UX/UI Designer will create intuitive, user-friendly digital interfaces that enhance customer experiences. The ideal candidate will have a strong eye for detail and the ability to translate business requirements into visually appealing designs.",
+    "responsibilities": "Design wireframes, prototypes, and high-fidelity mockups for web and mobile applications.",
+    "qualifications": "Bachelor’s degree in Design or related field, with proficiency in Figma, Adobe XD, or similar tools."
+  },
+  {
+    "title": "Cybersecurity Specialist",
+    "location": "Chicago, IL",
+    "remote": true,
+    "salary": "$140,000",
+    "tags": ["Security", "IT", "Remote"],
+    "date": "Nov 2, 2023",
+    "overview": "The Cybersecurity Specialist will safeguard the organization’s systems and data from cyber threats. This role requires expertise in security protocols, risk assessment, and incident response.",
+    "responsibilities": "Monitor systems for security breaches, develop protective measures, and respond to incidents promptly.",
+    "qualifications": "Bachelor’s degree in Cybersecurity, Information Technology, or related field, and relevant certifications."
+  },
+  {
+    "title": "Human Resources Manager",
+    "location": "Miami, FL",
+    "remote": false,
+    "salary": "$88,000",
+    "tags": ["HR", "Management", "Full-time"],
+    "date": "Aug 25, 2023",
+    "overview": "The Human Resources Manager will oversee recruitment, employee relations, and HR policy implementation. This position requires strong interpersonal skills and experience in workforce management.",
+    "responsibilities": "Develop HR strategies, manage hiring processes, and ensure compliance with labor laws.",
+    "qualifications": "Bachelor’s degree in Human Resources or related field, with 5+ years of HR experience."
+  },
+  {
+    "title": "Content Marketing Specialist",
+    "location": "Denver, CO",
+    "remote": true,
+    "salary": "$75,000",
+    "tags": ["Marketing", "Content", "Remote"],
+    "date": "Sep 18, 2023",
+    "overview": "The Content Marketing Specialist will create and manage engaging content that drives brand awareness and customer engagement. This role involves strategic thinking, storytelling skills, and SEO knowledge.",
+    "responsibilities": "Write blog posts, create social media content, and develop marketing materials aligned with brand voice.",
+    "qualifications": "Bachelor’s degree in Marketing, Communications, or related field, with proven content creation experience."
   }
+
 ]

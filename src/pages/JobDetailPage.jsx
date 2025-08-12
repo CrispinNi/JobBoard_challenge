@@ -62,9 +62,7 @@ const JobDetailPage = () => {
           <section className="mt-8">
             <h2 className="text-xl font-bold mb-2">Responsibilities</h2>
             <div className="space-y-2">
-              {job.responsibilities?.map((item, idx) => (
-                <p key={idx}>- {item}</p>
-              )) || "None listed."}
+              {job.responsibilities || "None listed."}
             </div>
           </section>
 
@@ -72,9 +70,7 @@ const JobDetailPage = () => {
           <section className="mt-8">
             <h2 className="text-xl font-bold mb-2">Qualifications</h2>
             <ul className="list-disc list-inside space-y-1">
-              {job.qualifications?.map((item, idx) => (
-                <li key={idx}>{item}</li>
-              )) || "None listed."}
+              {job.qualifications || "None listed."}
             </ul>
           </section>
         </div>

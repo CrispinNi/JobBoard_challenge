@@ -1,132 +1,153 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import Navbar from "../components/Navbar";
-import Hero from "../components/HeroJob";
-import ApplyModal from "../components/apply";
-import { MapPin, Mail, Clock, Briefcase, Calendar } from "lucide-react";
-import Footer from "../components/footer";
-import { fetchJobs } from "../redux/slices/jobSlice";
-import '@fontsource/inter-tight'; 
+import React, { useState, useEffect, useRef } from "react";
+import axios from "axios";
+import "@fontsource/inter-tight";
 
-const JobDetailPage = () => {
-  const { id } = useParams();
-  const job = useSelector((state) => state.jobs.list[parseInt(id)]);
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const [showModal, setShowModal] = useState(false);
-  const dispatch = useDispatch();
 
-  const { list, loading, error } = useSelector((state) => state.jobs);
+const ApplyModal = ({ isOpen, onClose, jobId }) => {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    secondName: "",
+    email: "",
+    cv: null,
+    coverLetter: null,
+  });
+
+  const [show, setShow] = useState(false);
+  const modalRef = useRef(null);
 
   useEffect(() => {
-  if (list.length === 0 || !job) {
-    dispatch(fetchJobs());
-  }
-}, [list.length, job, dispatch]);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
-  if (!job) return <p>Job not found.</p>;
-
-  const handleApplyClick = () => {
-    if (!isAuthenticated) {
-      alert("Please log in to apply for this job.");
-      return;
+    if (isOpen) {
+      setShow(true); // start animation in
+    } else {
+      const timeout = setTimeout(() => setShow(false), 300); // wait for animation out
+      return () => clearTimeout(timeout);
     }
-    setShowModal(true);
+  }, [isOpen]);
+
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: files ? files[0] : value,
+    }));
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const submission = {
+      firstName: formData.firstName,
+      secondName: formData.secondName,
+      email: formData.email,
+      jobId,
+      cvFileName: formData.cv?.name || "",
+      coverLetterFileName: formData.coverLetter?.name || "",
+    };
+
+    try {
+      await axios.post("http://localhost:3001/applications", submission);
+      alert("Application submitted!");
+      onClose();
+    } catch (error) {
+      console.error(error);
+      alert("Submission failed");
+    }
+  };
+
+  const handleOverlayClick = (e) => {
+    if (modalRef.current && !modalRef.current.contains(e.target)) {
+      onClose();
+    }
+  };
+
+  if (!isOpen && !show) return null;
+
   return (
-    <div className="min-h-screen font-interTight bg-white">
-      <Navbar />
-      <Hero />
-      <div className="max-w-6xl mx-auto p-6 flex flex-col md:flex-row gap-8">
-        {/* Left Section */}
-        <div className="flex-1">
-          {/* Job Title & Company */}
-          <h1 className="text-3xl font-bold ">{job.title}</h1>
-          <p className="text-lg text-gray-600 ">{job.company}</p>
-          <p className="text-blue-500 ">
-            {job.location} / {job.country} / {job.remote ? "Remote" : "On-site"}
-          </p>
+    <div
+      className={`fixed inset-0 z-50 flex items-end md:items-center justify-center transition-colors duration-300 ${
+        isOpen ? "bg-white bg-opacity-40" : "bg-white bg-opacity-0"
+      }`}
+      onClick={handleOverlayClick}
+    >
+      <div
+        ref={modalRef}
+        className={`bg-white p-6 rounded-t-2xl md:rounded-lg w-full max-w-lg relative transform transition-transform duration-300 ease-out ${
+          isOpen ? "translate-y-0" : "translate-y-full md:translate-y-8 opacity-0"
+        }`}
+        onClick={(e) => e.stopPropagation()} // prevent clicks inside modal from closing it
+      >
+      <div className="bg-gray-200 rounded-lg">
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-2 right-2 text-gray-500 hover:text-black p-8"
+        >
+          ✕
+        </button>
 
-          {/* Overview */}
-          <section className="mt-8">
-            <h2 className="text-xl font-bold mb-2 ">Overview</h2>
-            <p>{job.overview || "No overview available."}</p>
-          </section>
+        <h2 className="text-xl font-bold mb-4 p-8">Apply for Job</h2>
 
-          {/* Responsibilities */}
-          <section className="mt-8">
-            <h2 className="text-xl font-bold mb-2 ">Responsibilities</h2>
-            <div className="space-y-2 ">
-              {job.responsibilities?.map((item, idx) => (
-                <p key={idx}>- {item}</p>
-              )) || "None listed."}
-            </div>
-          </section>
-
-          {/* Qualifications */}
-          <section className="mt-8">
-            <h2 className="text-xl font-bold mb-2 ">Qualifications</h2>
-            <ul className="list-disc list-inside space-y-1 ">
-              {job.qualifications?.map((item, idx) => (
-                <li key={idx}>{item}</li>
-              )) || "None listed."}
-            </ul>
-          </section>
-        </div>
-
-        {/* Right Section */}
-        <div className="w-full md:w-80">
-          <div className="border rounded-xl p-6 shadow-sm space-y-4">
-            <div className="flex items-center gap-2 text-gray-600">
-              <MapPin className="w-5 h-5" />
-              <span>{job.location}</span>
-            </div>
-            <p className="text-gray-500">
-              Please send us your detailed CV to apply for this job post
-            </p>
-            <p className="text-2xl font-bold">
-              {job.salary ? `$${job.salary}` : "Not specified"}
-            </p>
-            <span className="text-gray-500 text-sm">Avg. salary</span>
-
-            <div className="flex items-center gap-2 text-gray-600">
-              <Mail className="w-5 h-5" />
-              <span>{job.email || "hr@example.com"}</span>
-            </div>
-            <div className="flex items-center gap-2 text-gray-600">
-              <Clock className="w-5 h-5" />
-              <span>{job.remote ? "Remote" : "On-site"}</span>
-            </div>
-            <div className="flex items-center gap-2 text-gray-600">
-              <Briefcase className="w-5 h-5" />
-              <span>{job.jobCategory || "General"}</span>
-            </div>
-            <div className="flex items-center gap-2 text-gray-600">
-              <Calendar className="w-5 h-5" />
-              <span>{job.date}</span>
-            </div>
-
-            <button
-              onClick={handleApplyClick}
-              className="w-full mt-4 bg-[#06aeef] text-white py-2 rounded-full font-medium"
-            >
-              Apply for this job
-            </button>
+        <form onSubmit={handleSubmit} className="space-y-4 p-8">
+          <input
+            name="firstName"
+            type="text"
+            placeholder="First Name"
+            value={formData.firstName}
+            onChange={handleChange}
+            className="w-full border px-4 py-2 rounded"
+            required
+          />
+          <input
+            name="secondName"
+            type="text"
+            placeholder="Second Name"
+            value={formData.secondName}
+            onChange={handleChange}
+            className="w-full border px-4 py-2 rounded"
+            required
+          />
+          <input
+            name="email"
+            type="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+            className="w-full border px-4 py-2 rounded"
+            required
+          />
+          <div>
+            <label className="block text-sm mb-1">Attach CV (PDF)</label>
+            <input
+              name="cv"
+              type="file"
+              accept="application/pdf"
+              onChange={handleChange}
+              className="w-full border px-4 py-2 rounded"
+            />
           </div>
-        </div>
+          <div>
+            <label className="block text-sm mb-1">
+              Attach Cover Letter (PDF)
+            </label>
+            <input
+              name="coverLetter"
+              type="file"
+              accept="application/pdf"
+              onChange={handleChange}
+              className="w-full border px-4 py-2 rounded"
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-purple-600 text-white py-2 rounded"
+          >
+            Submit Application
+          </button>
+        </form>
       </div>
-
-      <ApplyModal
-        isOpen={showModal}
-        onClose={() => setShowModal(false)}
-        jobId={id}
-      />
-      <Footer/>
+        
+      </div>
     </div>
   );
 };
 
-export default JobDetailPage;
+export default ApplyModal;

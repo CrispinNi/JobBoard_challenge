@@ -115,27 +115,29 @@ const ApplyModal = ({ isOpen, onClose, jobId }) => {
             required
           />
           <div>
-            <label className="block text-sm mb-1">Attach CV (PDF)</label>
-            <input
-              name="cv"
-              type="file"
-              accept="application/pdf"
-              onChange={handleChange}
-              className="w-full border px-4 py-2 rounded"
-            />
-          </div>
-          <div>
-            <label className="block text-sm mb-1">
-              Attach Cover Letter (PDF)
-            </label>
-            <input
-              name="coverLetter"
-              type="file"
-              accept="application/pdf"
-              onChange={handleChange}
-              className="w-full border px-4 py-2 rounded"
-            />
-          </div>
+  <label htmlFor="cv" className="block text-sm mb-1">Attach CV (PDF)</label>
+  <input
+    id="cv"
+    name="cv"
+    type="file"
+    accept="application/pdf"
+    onChange={handleChange}
+    className="w-full border px-4 py-2 rounded"
+  />
+</div>
+<div>
+  <label htmlFor="coverLetter" className="block text-sm mb-1">
+    Attach Cover Letter (PDF)
+  </label>
+  <input
+    id="coverLetter"
+    name="coverLetter"
+    type="file"
+    accept="application/pdf"
+    onChange={handleChange}
+    className="w-full border px-4 py-2 rounded"
+  />
+</div>
           <button
             type="submit"
             className="w-full bg-purple-600 text-white py-2 rounded"
