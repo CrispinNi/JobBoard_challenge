@@ -58,7 +58,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Row */}
-        <div className="w-full/1:2 mx-12 flex justify-center border-t border-[#21295c]/20 pt-4 text-sm">
+        <div className="w-full  flex justify-center border-t border-[#21295c]/15 pt-4 text-sm">
           <p>© 2020 All Copyrights Reserved To House Number 3</p>
           
         </div>
