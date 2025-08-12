@@ -25,7 +25,7 @@ Follow these steps to set up the project locally:
 
 ### 1. Clone the repository
 
-git clone https://github.com/your-username/job-board.git
+git clone https://github.com/CrispinNi/job-board.git
 cd job-board
 
 ### 2. Install dependencies
@@ -38,16 +38,16 @@ npx json-server --watch db.json --port 5000
 ### 4. Run the development server
 npm run dev
 
-### 5. Build for production**
+### 5. Build for production
 npm run build
 
-### 6. Preview production build**
+### 6. Preview production build
 npm run preview
 
-### 7. Setting the Vitest + Testing Library**
+### 7. Setting the Vitest + Testing Library
 npm install --save-dev vitest @testing-library/react @testing-library/jest-dom @testing-library/user-event
 
-**8. Login information**
+### 8. Login information
 ---admin credentials{
     email:"admin@gmail.com";
     password:" password"
@@ -63,8 +63,8 @@ The project follows a modular React architecture with clear separation of concer
 
 Folder Structure Overview
 
-├── App.jsx # Main application component & route definitions
-├── assets/ # Static assets (e.g., images, icons)
+├── App.jsx  Main application component & route definitions
+├── assets/  Static assets (e.g., images, icons)
 │ └── react.svg
 ├── components/ # Reusable UI components
 │ ├── Apply.jsx # Job application form
